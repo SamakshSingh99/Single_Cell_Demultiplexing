@@ -58,6 +58,7 @@ UCB_seurat <- FindVariableFeatures(UCB_seurat, selection.method = "mean.var.plot
 # Standardization
 
 UCB_seurat <- ScaleData(UCB_seurat, features = VariableFeatures(UCB_seurat))
+
 View(UCB_seurat@meta.data)
 
 UCB_seurat
@@ -67,5 +68,26 @@ UCB_seurat
 # Active assay: RNA (32738 features, 0 variable features)
 # 3 layers present: counts, data, scale.data
 
+###########################
+# Adding HTO Label Matrix #
+###########################
+
+UCB_seurat[["HTO"]] <- CreateAssayObject(counts = pucb.htos)
+
+UCB_seurat
+
+head(UCB_seurat@meta.data)
+
+# An object of class Seurat 
+# 32740 features across 20885 samples within 2 assays 
+# Active assay: RNA (32738 features, 0 variable features)
+# 3 layers present: counts, data, scale.data
+# 1 other assay present: HTO
+
+##############
+# Core Steps #
+##############
+
+UCB_seurat <- HTODemux(UCB_seurat, assay = "HTO", positive.quantile = 0.99)
 
 
