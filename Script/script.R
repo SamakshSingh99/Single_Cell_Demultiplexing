@@ -35,7 +35,7 @@ rownames(HTO_labs)
 # Performing QC For Downstream Analysis #
 #########################################
 
-pucb.htos <- HTO_labs[colSums(HTO_labs)>0] # Barcode ID with 0 in both samples removed
+pucb.htos <- HTO_labs[,colSums(HTO_labs)>0] # Barcode ID with 0 in both samples removed
 
 # Gene Expression Matrix
 
@@ -44,6 +44,11 @@ pucb.umis <- UCB23_File$`Gene Expression`
 # QC Perfromed on The Surface Protein, Performing Intersection
 
 joint.bcs <- intersect(colnames(pucb.umis), colnames(pucb.htos))
+
+# Subset the matrices to include only the joint barcodes
+pucb.umis <- pucb.umis[, joint.bcs]
+pucb.htos <- pucb.htos[, joint.bcs]
+
 
 UCB_seurat <-  CreateSeuratObject(counts = pucb.umis, project = "UCB")
 
