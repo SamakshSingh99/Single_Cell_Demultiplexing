@@ -49,7 +49,6 @@ joint.bcs <- intersect(colnames(pucb.umis), colnames(pucb.htos))
 pucb.umis <- pucb.umis[, joint.bcs]
 pucb.htos <- pucb.htos[, joint.bcs]
 
-
 UCB_seurat <-  CreateSeuratObject(counts = pucb.umis, project = "UCB")
 
 #Normalizing The Data 
