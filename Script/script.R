@@ -14,13 +14,38 @@ library(gridExtra)
 #############################
 prim_dir <- list.dirs(path = "/Users/samaksh/Repositories/scRNA_HTO_Demultiplexing/", recursive = T, full.names = F)
 
+UCB23_File <- Read10X("/Users/samaksh/Repositories/scRNA_HTO_Demultiplexing/zipped_file_UCB2UCB3")
+
+########################################
+## OBJECTIVE 1. UNDERSTANDING AND     ##
+## VISUALIZATION OF RAW UCB2UCB3 DATA ##
+########################################
+Seurat_UCB23 <- CreateSeuratObject(UCB23_File, project = "Raw_UCB")
+View(Seurat_UCB23@meta.data)
+
+Seurat_UCB23 <- CreateSeuratObject(UCB23_File)
+
+# Normalization
+Seurat_UCB23 <- NormalizeData(Seurat_UCB23, 
+                              normalization.method = "LogNormalize",
+                              scale.factor = 10000)
+
+Seurat_UCB23 <- ScaleData(Seurat_UCB23)
+
+Seurat_UCB23 <- FindVariableFeatures(Seurat_UCB23,
+                                     mean.function = ExpMean,
+                                     dispersion.function = LogVMR)
+
+Seurat_UCB23 <- RunPCA(Seurat_UCB23)
+
 ######################################
-## OBJECTIVE 1. SEPARATING THE DATA ##
+## OBJECTIVE 2. SEPARATING THE DATA ##
 ## FROM THE CELL HASHING FILE TO    ##
 ## PERFORM SCRNASeq ANALYSIS.       ##
 ######################################
 
-UCB23_File <- Read10X("/Users/samaksh/Repositories/scRNA_HTO_Demultiplexing/zipped_file_UCB2UCB3")
+Seurat_UCB23 <- CreateSeuratObject(UCB23_File, project = "Raw_UCB")
+View(Seurat_UCB23@meta.data)
 
 ###############################
 # Extracting Info on HTO Tags #
@@ -28,6 +53,7 @@ UCB23_File <- Read10X("/Users/samaksh/Repositories/scRNA_HTO_Demultiplexing/zipp
 
 HTO_labs <- as.data.frame(UCB23_File$`Antibody Capture`)
 rownames(HTO_labs)
+
 
  # "B0251 anti-human Hashtag1" "B0252 anti-human Hashtag2"
 
