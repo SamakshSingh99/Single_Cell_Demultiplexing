@@ -7,6 +7,7 @@
 #######################
 
 library(Seurat)
+library(tidyverse)
 
 setwd("./parent_directory")
 
