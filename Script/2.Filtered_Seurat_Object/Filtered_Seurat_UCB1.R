@@ -8,6 +8,7 @@
 
 library(Seurat)
 library(ggplot2)
+library(tidyverse)
 
 setwd("./parent_directory")
 
@@ -17,9 +18,11 @@ load("./Raw_Format/UCB1_Seurat.Rdata")
 #####################
 # 2. Filtering Data #
 #####################
+view(UCB1_Seurat@meta.data)
 
 # Calculating Mitochondrial Percentage
-UCB1_Seurat$mito_percent <- PercentageFeatureSet(UCB1_Seurat, pattern = '^MT-') 
+UCB1_Seurat[["mito.perc"]] <- PercentageFeatureSet(UCB1_Seurat, pattern = '^MT-') 
+
 
 # Setting Library size of cells within 2 SDs around mean value
 
