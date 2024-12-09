@@ -15,3 +15,14 @@ The data for taken from a publically available literature "Putative regulators f
 * __Sample-Specific Analysis:__ Extract and analyze cells specific to individual HTO tags.
 * __Visualization:__ Generate informative plots for exploratory data analysis.
 
+## Outputs
+
+__Raw Data Contents__
+<img width="930" alt="1_UBC_Seurat_HTO" src="https://github.com/user-attachments/assets/6b3e10d9-5e7b-4f30-a51d-786c118845a4">
+
+__UMAP Dimensional Reduction Plot After Demultiplexing With HTO Tags__
+![UMAP_HTOs](https://github.com/user-attachments/assets/571c1437-763d-409b-977f-9cd750efc6b8)
+
+
+
+
