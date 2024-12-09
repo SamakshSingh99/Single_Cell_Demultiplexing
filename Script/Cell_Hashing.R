@@ -142,8 +142,70 @@ table(Idents(UBC.HTO.subset))
 # B0251 anti-human Hashtag1 B0252 anti-human Hashtag2 
 # 2144                      1831 
 
+# Dimensionality reduction using PCA and UMAP
+
+UBC.HTO.subset <- RunPCA(UBC.HTO.subset)
+
+UBC.HTO.subset <- RunUMAP(UBC.HTO.subset,dims=1:10)
+
+DimPlot(UBC.HTO.subset) 
+
+#######################################
+# 9. Sample specific cells extraction #
+#######################################
+
+UBC2 <- subset(UBC.tags,
+               idents = c("B0251 anti-human Hashtag1"))
+
+UBC3 <- subset(UBC.tags,
+               idents = c("B0252 anti-human Hashtag2"))
+
+# Merging UBC2 and UBC3 seurat objects
+
+UBC2UBC3 <- merge(UBC2, y= UBC3, add.cell.ids = c('UBC2', 'UBC3'))
+
+# Assigning the corresponding cell ids in the metadata
+
+phe = as.data.frame(str_split(colnames(UBC2UBC3), '_', simplify = TRUE))
+
+UBC2UBC3@meta.data$orig.ident = phe$V1
+
+table(UBC2UBC3@meta.data$orig.ident )
+
+# UBC2 UBC3 
+# 2144 1831 
+
+View(UBC2UBC3@meta.data)
 
 
+# Merged Seurat standardization
 
+###############
+# 10. Harmony #
+###############
 
+# Running processes upto PCA as per harmony requirements
 
+# Data Normalization
+UBC2UBC3 <- NormalizeData(UBC2UBC3,
+                          normalization.method = "LogNormalize",
+                          scale.factor = 1e4) 
+
+# Variable Feature Identification
+UBC2UBC3 <- FindVariableFeatures(UBC2UBC3)
+
+# Data Scaling
+UBC2UBC3 <- ScaleData(UBC2UBC3)
+
+# Dimensionality reduction 
+
+UBC2UBC3 <- RunPCA(UBC2UBC3, features = VariableFeatures(object=UBC2UBC3)) # PCA
+
+UBC.seurat <- RunHarmony(UBC2UBC3, "orig.ident") #Harmony Reduction
+
+names(UBC.seurat@reductions)
+
+UBC.seurat <- RunUMAP(UBC.seurat,  dims = 1:15, 
+                     reduction = "harmony") 
+
+DimPlot(UBC.seurat,reduction = "umap",label=F )
