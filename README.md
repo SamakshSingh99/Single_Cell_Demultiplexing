@@ -7,11 +7,11 @@ The data for taken from a publically available literature "Putative regulators f
 
 ## Steps Performed
 
-* Quality Control: Filter out cells with zero HTO tag counts.
-* Demultiplexing: Classify cells as singlets, doublets, or negatives using HTO tags.
-* Normalization: Apply CLR normalization for HTO data and log normalization for gene expression data.
-* Dimensionality Reduction: Perform PCA and UMAP for visualizing clusters.
-* Batch Correction: Use Harmony for batch effect correction in merged datasets.
-* Sample-Specific Analysis: Extract and analyze cells specific to individual HTO tags.
-* Visualization: Generate informative plots for exploratory data analysis.
+* _Quality Control:_ Filter out cells with zero HTO tag counts.
+* _Demultiplexing:_ Classify cells as singlets, doublets, or negatives using HTO tags.
+* _Normalization:_ Apply CLR normalization for HTO data and log normalization for gene expression data.
+* _Dimensionality Reduction:_ Perform PCA and UMAP for visualizing clusters.
+* _Batch Correction:_ Use Harmony for batch effect correction in merged datasets.
+* _Sample-Specific Analysis:_ Extract and analyze cells specific to individual HTO tags.
+* _Visualization:_ Generate informative plots for exploratory data analysis.
 
