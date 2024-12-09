@@ -23,6 +23,8 @@ The data for taken from a publically available literature "Putative regulators f
 ### __UMAP Dimensional Reduction Plot After Demultiplexing With HTO Tags__
 ![UMAP_HTOs](https://github.com/user-attachments/assets/571c1437-763d-409b-977f-9cd750efc6b8)
 
+### __UMAP Dimensional Reduction Plot After Harmony Dimentional Reduction__
+![UBC_Harmony](https://github.com/user-attachments/assets/36608aed-85eb-4b7c-be0b-bbdcb8628c7e)
 
 
 
