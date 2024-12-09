@@ -54,3 +54,14 @@ ubc.hto <- as.matrix(ubc.hto[, joint.filt_barcodes])
 # Seurat object for downstream analysis.     #
 ##############################################
 
+# Creating new seurat object
+UBC.tags <- CreateSeuratObject(counts = UBC.ge)
+
+# Normalization
+UBC.tags <- NormalizeData(UBC.tags)
+
+# Identifying features with high variability
+
+UBC.tags <- FindVariableFeatures(UBC.tags, selection.method = "mean.var.plot")
+
+
