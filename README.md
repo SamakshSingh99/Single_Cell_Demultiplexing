@@ -34,5 +34,11 @@ The data for taken from a publically available literature "Putative regulators f
 ### __UMAP Dimensional Reduction Plot After Harmony Dimentional Reduction__
 ![UBC_Harmony](https://github.com/user-attachments/assets/36608aed-85eb-4b7c-be0b-bbdcb8628c7e)
 
+## Requirements
 
+* __Seurat__ (Version 5.1.0)
+* __ggplot2__ (Version 3.5.1)
+* __tidyverse__ (Version 2.0.0)
+* __stringr__ (Version 1.5.1)
+* __harmony__ (Version 1.2.1)
 
