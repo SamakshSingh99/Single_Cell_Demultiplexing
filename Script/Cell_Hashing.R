@@ -208,4 +208,5 @@ names(UBC.seurat@reductions)
 UBC.seurat <- RunUMAP(UBC.seurat,  dims = 1:15, 
                      reduction = "harmony") 
 
+UMAP <- UMAPPlot(UBC.seurat, group.by = "orig.ident")
 DimPlot(UBC.seurat,reduction = "umap",label=F )
