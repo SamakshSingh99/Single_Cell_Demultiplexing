@@ -7,11 +7,11 @@
 # 1. Loading Packages #
 #######################
 
-library(Seurat)
-library(ggplot2)
-library(tidyverse)
-library(stringr)
-library(harmony)
+library(Seurat) # 5.1.0
+library(ggplot2) # 3.5.1
+library(tidyverse) # 2.0.0
+library(stringr) # 1.5.1
+library(harmony) # 1.2.1
 
 ##############################################
 # 2. Loading the single-cell hashing dataset #
